@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="libs">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../adt-bundle-windows-x86_64-20131030/sdk/extras/android/support/multidex/instrumentation/libs/android-support-multidex-instrumentation.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../adt-bundle-windows-x86_64-20131030/sdk/extras/android/support/multidex/instrumentation/libs/android-support-multidex.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/volley.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gson-2.2.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
