@@ -10,7 +10,6 @@
 package com.example.app;
 
 import android.app.Application;
-import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -23,22 +22,22 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 
 
-public class CouponApplication extends Application {
+public class CouponApplication extends Application implements IOutLetRequest{
 
-    private static CouponApplication mCouponApplication = null;
     public static final String JSON_URL = "http://staging.couponapitest.com/task.txt";
-    OutletResponseModel outletResponseModel;
-    IOutletResponseModel iOutletResponseModel;
+    private OutletResponseModel outletResponseModel;
+    private IOutletResponseListener responseListener;
+    private static IOutLetRequest outLetRequest;
 
     @Override
     public final void onCreate() {
         super.onCreate();
-        mCouponApplication = this;
+        outLetRequest = this;
 
     }
 
-    public static CouponApplication getCouponApplication() {
-        return mCouponApplication;
+    public static IOutLetRequest getIOutLetRequest() {
+        return outLetRequest;
     }
 
     private void sendRequest() {
@@ -48,14 +47,13 @@ public class CouponApplication extends Application {
 
                     public void onResponse(String response) {
 
-                        showJSON(response);
+                        setOutLetList(response);
                     }
                 },
                 new Response.ErrorListener() {
 
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(mCouponApplication, error.getMessage(), Toast.LENGTH_LONG).show();
-                        iOutletResponseModel.onError(error.getMessage());
+                        responseListener.onError(error.getMessage());
                     }
                 });
 
@@ -63,36 +61,30 @@ public class CouponApplication extends Application {
         requestQueue.add(stringRequest);
     }
 
-    private void showJSON(String json) {
+    private void setOutLetList(String json) {
         Gson gson = new Gson();
         Type listOfTestObject = new TypeToken<OutletResponseModel>() {
         }.getType();
         try {
             outletResponseModel = gson.fromJson(json, listOfTestObject);
-            iOutletResponseModel.onOutLetsDownload(outletResponseModel);
+            responseListener.onOutLetList(outletResponseModel.data);
         } catch (Exception e) {
-            iOutletResponseModel.onError(e.getMessage());
+            responseListener.onError(e.getMessage());
         }
 
     }
 
 
-    public void downloadOutLets(IOutletResponseModel iOutletResponseModel) {
-        this.iOutletResponseModel = iOutletResponseModel;
+    public void getOutLets(IOutletResponseListener iOutletResponseListener) {
+        this.responseListener = iOutletResponseListener;
         if (outletResponseModel == null) {
             sendRequest();
         } else {
-            iOutletResponseModel.onOutLetsDownload(outletResponseModel);
+            iOutletResponseListener.onOutLetList(outletResponseModel.data);
 
         }
-
     }
 
-    public interface IOutletResponseModel {
-        void onOutLetsDownload(OutletResponseModel outletResponseModel);
-
-        void onError(String errorMessage);
-    }
 
 
 }

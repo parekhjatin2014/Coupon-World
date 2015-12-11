@@ -28,7 +28,6 @@ public class NearbyOutletAdapter extends ArrayAdapter<Outlet> {
 
     private ImageLoader mImageLoader;
 
-
     /**
      * Context instance
      */
@@ -39,6 +38,11 @@ public class NearbyOutletAdapter extends ArrayAdapter<Outlet> {
         mContext = context;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mImageLoader = ImageCacheManager.getInstance(context).getImageLoader();
+    }
+
+    public void updateList(List<Outlet> outletList) {
+        clear();
+        addAll(outletList);
     }
 
     @Override
@@ -92,7 +96,7 @@ public class NearbyOutletAdapter extends ArrayAdapter<Outlet> {
         /*int locDistance = (int) outlet.getDistanceFromCurrent();
         holder.distanceTextView.setText(locDistance + " Km");*/
 
-        int locDistance = (int) outlet.getDistanceFromCurrent();
+        double locDistance = (int) outlet.getDistanceFromCurrent();
         if (locDistance > 1000) {
             String distance = String.valueOf(new DecimalFormat("##.##").format(locDistance / 1000));
             holder.distanceTextView.setText(distance + " Km");
