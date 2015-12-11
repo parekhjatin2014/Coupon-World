@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="android-support-v17-leanback">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../adt-bundle-windows-x86_64-20131030/sdk/extras/android/support/v17/leanback/libs/android-support-v17-leanback.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

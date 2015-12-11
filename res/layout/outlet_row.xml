@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@android:color/white"
+              android:padding="5dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+
+        <ImageView android:id="@+id/outlet_image"   android:background="@android:color/black"
+                   android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:orientation="vertical" >
+            <TextView android:id="@+id/outlet_name" style="@style/coupon_text_style"
+                    android:textStyle="bold"/>
+            <TextView android:id="@+id/outlet_offer"  style="@style/coupon_text_style"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView android:id="@+id/outlet_category_type"  style="@style/coupon_text_style"/>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:id="@+id/outlet_distance"  style="@style/coupon_text_style"/>
+        <TextView android:id="@+id/outlet_locality"  style="@style/coupon_text_style"/>
+    </LinearLayout>
+
+</LinearLayout>

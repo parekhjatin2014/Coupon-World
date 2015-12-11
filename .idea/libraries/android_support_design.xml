@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="android-support-design">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../adt-bundle-windows-x86_64-20131030/sdk/extras/android/support/design/libs/android-support-design.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
